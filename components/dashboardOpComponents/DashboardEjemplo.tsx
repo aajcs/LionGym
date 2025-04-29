@@ -14,7 +14,10 @@ import { ProgressBar } from "primereact/progressbar";
 const DashboardEjemplo = () => {
   const { layoutConfig } = useContext(LayoutContext);
   const [selectedWeek, setSelectedWeek] = useState<any>(null);
-  const [attendanceData, setAttendanceData] = useState<ChartData>({});
+  const [attendanceData, setAttendanceData] = useState<ChartData>({
+    labels: [],
+    datasets: [],
+  });
 
   const weeks = [
     { name: "Semana Pasada", code: "0" },
