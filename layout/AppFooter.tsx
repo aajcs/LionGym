@@ -12,8 +12,8 @@ const AppFooter = () => {
           src={
             "/layout/images/" +
             (layoutConfig.colorScheme === "light"
-              ? "maroilIcono"
-              : "maroilIcono") +
+              ? "logoLionGym"
+              : "logoLionGym") +
             ".ico"
           }
           alt="logo"
