@@ -1,4 +1,3 @@
-import { Recepcion, Refineria } from "@/libs/interfaces";
 import { getSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
@@ -12,8 +11,6 @@ interface UseSocketReturn {
   online: boolean;
   conectarSocket: () => void;
   desconectarSocket: () => void;
-  recepcionModificado: Recepcion | null;
-  refineriaModificado: Refineria | null;
 }
 
 export const useSocket = (): UseSocketReturn => {
@@ -21,10 +18,6 @@ export const useSocket = (): UseSocketReturn => {
   const serverPath = "https://api-maroil-refinery-2500582bacd8.herokuapp.com";
   const [online, setOnline] = useState(false);
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [recepcionModificado, setRecepcionModificado] =
-    useState<Recepcion | null>(null);
-  const [refineriaModificado, setRefineriaModificado] =
-    useState<Refineria | null>(null);
 
   const conectarSocket = useCallback(async () => {
     const session = await getSession();
@@ -98,7 +91,6 @@ export const useSocket = (): UseSocketReturn => {
   useEffect(() => {
     socket?.on("recepcion-modificada", (recepcion) => {
       console.log("Recepcion Modificada", recepcion);
-      setRecepcionModificado(recepcion);
       // Actualizar la lista de refinerías en el cliente
     });
   }, [socket]);
@@ -108,7 +100,5 @@ export const useSocket = (): UseSocketReturn => {
     online,
     conectarSocket,
     desconectarSocket,
-    recepcionModificado,
-    refineriaModificado,
   };
 };

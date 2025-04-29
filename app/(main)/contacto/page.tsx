@@ -1,13 +1,7 @@
 "use client";
 
-import TanqueList from "@/components/refineriaComponents/tanqueComponents/TanqueList";
-
 function Tanques() {
-  return (
-    <>
-      <TanqueList />
-    </>
-  );
+  return <></>;
 }
 
 export default Tanques;
