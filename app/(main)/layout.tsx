@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Lion Gym",
-    url: "https://www.maroil.com.ve",
+    url: "https://www.liongym.com.ve",
     description: "Lion Gym Refinery.",
 
     ttl: 604800,
