@@ -6,8 +6,8 @@ interface ExtendedUser {
 }
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:4000/api",
-  // baseURL: "https://api-maroil-refinery-2500582bacd8.herokuapp.com/api",
+  // baseURL: "http://localhost:4000/api",
+  baseURL: "https://lion-gym-01ee6971ed4d.herokuapp.com/api",
   headers: {
     "Content-Type": "application/json",
   },
