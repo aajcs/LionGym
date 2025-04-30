@@ -11,6 +11,7 @@ import { TabView, TabPanel } from "primereact/tabview";
 import { Tag } from "primereact/tag";
 import { ProgressBar } from "primereact/progressbar";
 import UserInfoList from "../clientesControlAcceso/UserInfoList";
+import AccessEvents from "../clientesControlAcceso/AccessEvents";
 
 const DashboardEjemplo = () => {
   const { layoutConfig } = useContext(LayoutContext);
@@ -348,6 +349,9 @@ const DashboardEjemplo = () => {
           <h5>Lista de Clientes Resitrados</h5>
           <UserInfoList />
         </div>
+      </div>
+      <div className="col-12 ">
+        <AccessEvents />
       </div>
     </div>
   );
