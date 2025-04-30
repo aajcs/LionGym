@@ -14,7 +14,7 @@ const AppFooter = () => {
             (layoutConfig.colorScheme === "light"
               ? "logoLionGym"
               : "logoLionGym") +
-            ".ico"
+            ".png"
           }
           alt="logo"
         />

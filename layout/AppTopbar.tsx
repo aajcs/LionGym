@@ -69,12 +69,12 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
       layoutConfig.layoutTheme === "primaryColor" &&
       layoutConfig.theme !== "yellow"
     ) {
-      logo = "logoLionGym.jpeg";
+      logo = "logoLionGym.png";
     } else {
       logo =
         layoutConfig.colorScheme === "light"
-          ? "logoLionGym.jpeg"
-          : "logoLionGym.jpeg";
+          ? "logoLionGym.png"
+          : "logoLionGym.png";
     }
     return path + logo;
   };

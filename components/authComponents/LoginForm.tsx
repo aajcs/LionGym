@@ -59,6 +59,20 @@ const LoginForm: Page = () => {
         className="surface-card py-7 px-5 sm:px-7 shadow-2 flex flex-column w-11 sm:w-30rem"
         style={{ borderRadius: "14px" }}
       >
+        <div className="text-center mb-5">
+          <img
+            src={
+              "/layout/images/" +
+              (layoutConfig.colorScheme === "light"
+                ? "logoLionGym"
+                : "logoLionGym") +
+              ".png"
+            }
+            alt="logo"
+            className="mb-3"
+            style={{ width: "80px", height: "80px" }}
+          />
+        </div>
         <h1 className="font-bold text-2xl mt-0 mb-2">LION GYM</h1>
         <p className="text-color-secondary mb-4">
           Bienvenido a la <strong>Lion Gym</strong>, inicie sesión para

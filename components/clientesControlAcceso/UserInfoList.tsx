@@ -77,31 +77,28 @@ const UserInfoList: React.FC = () => {
   const faceBody = (row: UserInfo) => <ImageCell remoteUrl={row.faceURL} />;
 
   return (
-    <div className="card">
-      <h5>Listado de Usuarios</h5>
-      <DataTable value={users} loading={loading} responsiveLayout="scroll">
-        <Column header="Foto" body={faceBody} style={{ width: "80px" }} />
-        <Column field="employeeNo" header="ID" sortable />
-        <Column field="name" header="Nombre" sortable />
-        <Column field="userType" header="Tipo" sortable />
-        <Column field="belongGroup" header="Grupo" />
-        <Column
-          field="Valid.beginTime"
-          header="Válido Desde"
-          body={(row) => new Date(row.Valid.beginTime).toLocaleDateString()}
-        />
-        <Column
-          field="Valid.endTime"
-          header="Válido Hasta"
-          body={(row) => new Date(row.Valid.endTime).toLocaleDateString()}
-        />
-        <Column
-          header="Activo"
-          body={(row) => (row.Valid.enable ? "Sí" : "No")}
-          style={{ textAlign: "center", width: "100px" }}
-        />
-      </DataTable>
-    </div>
+    <DataTable value={users} loading={loading} responsiveLayout="scroll">
+      <Column header="Foto" body={faceBody} style={{ width: "80px" }} />
+      <Column field="employeeNo" header="ID" sortable />
+      <Column field="name" header="Nombre" sortable />
+      <Column field="userType" header="Tipo" sortable />
+      <Column field="belongGroup" header="Grupo" />
+      <Column
+        field="Valid.beginTime"
+        header="Válido Desde"
+        body={(row) => new Date(row.Valid.beginTime).toLocaleDateString()}
+      />
+      <Column
+        field="Valid.endTime"
+        header="Válido Hasta"
+        body={(row) => new Date(row.Valid.endTime).toLocaleDateString()}
+      />
+      <Column
+        header="Activo"
+        body={(row) => (row.Valid.enable ? "Sí" : "No")}
+        style={{ textAlign: "center", width: "100px" }}
+      />
+    </DataTable>
   );
 };
 

@@ -19,7 +19,6 @@ const DashboardEjemplo = () => {
     labels: [],
     datasets: [],
   });
-  const [userImageUrl, setUserImageUrl] = useState<string>("");
 
   const weeks = [
     { name: "Semana Pasada", code: "0" },
@@ -31,40 +30,40 @@ const DashboardEjemplo = () => {
     { name: "Ana Martínez", membership: "Básica", lastCheckin: "Hace 4h" },
     { name: "Pedro Sánchez", membership: "VIP", lastCheckin: "Ayer" },
   ];
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const res = await fetch("/api/userinfo", { method: "POST" });
-        if (!res.ok) {
-          throw new Error(`Request failed with status ${res.status}`);
-        }
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching user info:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserInfo = async () => {
+  //     try {
+  //       const res = await fetch("/api/userinfo", { method: "POST" });
+  //       if (!res.ok) {
+  //         throw new Error(`Request failed with status ${res.status}`);
+  //       }
+  //       const data = await res.json();
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error("Error fetching user info:", error);
+  //     }
+  //   };
 
-    fetchUserInfo();
-  }, []);
+  //   fetchUserInfo();
+  // }, []);
 
-  useEffect(() => {
-    const fetchUserImage = async () => {
-      try {
-        const res = await fetch("/api/userImagen", { method: "POST" });
-        if (!res.ok) {
-          throw new Error(`Request failed with status ${res.status}`);
-        }
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        setUserImageUrl(url);
-      } catch (error) {
-        console.error("Error fetching user image:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserImage = async () => {
+  //     try {
+  //       const res = await fetch("/api/userImagen", { method: "POST" });
+  //       if (!res.ok) {
+  //         throw new Error(`Request failed with status ${res.status}`);
+  //       }
+  //       const blob = await res.blob();
+  //       const url = URL.createObjectURL(blob);
+  //       setUserImageUrl(url);
+  //     } catch (error) {
+  //       console.error("Error fetching user image:", error);
+  //     }
+  //   };
 
-    fetchUserImage();
-  }, []);
+  //   fetchUserImage();
+  // }, []);
 
   useEffect(() => {
     setAttendanceData({
@@ -84,16 +83,7 @@ const DashboardEjemplo = () => {
   return (
     <div className="grid">
       {/* Estadísticas Principales */}
-      <div className="col-12 lg:col-6 xl:col-3">
-        <div className="card p-3 text-center">
-          <h6>Imagen de Usuario</h6>
-          {userImageUrl ? (
-            <img src={userImageUrl} alt="User" className="w-full h-auto" />
-          ) : (
-            <span>Cargando imagen...</span>
-          )}
-        </div>
-      </div>
+
       <div className="col-12 lg:col-6 xl:col-3">
         <div className="card p-0 overflow-hidden flex flex-column">
           <div className="flex align-items-center p-3">
