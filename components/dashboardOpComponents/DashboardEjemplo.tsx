@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { Chart } from "primereact/chart";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
@@ -10,6 +10,7 @@ import { LayoutContext } from "../../layout/context/layoutcontext";
 import { TabView, TabPanel } from "primereact/tabview";
 import { Tag } from "primereact/tag";
 import { ProgressBar } from "primereact/progressbar";
+import UserInfoList from "../clientesControlAcceso/UserInfoList";
 
 const DashboardEjemplo = () => {
   const { layoutConfig } = useContext(LayoutContext);
@@ -18,6 +19,7 @@ const DashboardEjemplo = () => {
     labels: [],
     datasets: [],
   });
+  const [userImageUrl, setUserImageUrl] = useState<string>("");
 
   const weeks = [
     { name: "Semana Pasada", code: "0" },
@@ -29,6 +31,40 @@ const DashboardEjemplo = () => {
     { name: "Ana Martínez", membership: "Básica", lastCheckin: "Hace 4h" },
     { name: "Pedro Sánchez", membership: "VIP", lastCheckin: "Ayer" },
   ];
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const res = await fetch("/api/userinfo", { method: "POST" });
+        if (!res.ok) {
+          throw new Error(`Request failed with status ${res.status}`);
+        }
+        const data = await res.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserImage = async () => {
+      try {
+        const res = await fetch("/api/userImagen", { method: "POST" });
+        if (!res.ok) {
+          throw new Error(`Request failed with status ${res.status}`);
+        }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        setUserImageUrl(url);
+      } catch (error) {
+        console.error("Error fetching user image:", error);
+      }
+    };
+
+    fetchUserImage();
+  }, []);
 
   useEffect(() => {
     setAttendanceData({
@@ -48,6 +84,16 @@ const DashboardEjemplo = () => {
   return (
     <div className="grid">
       {/* Estadísticas Principales */}
+      <div className="col-12 lg:col-6 xl:col-3">
+        <div className="card p-3 text-center">
+          <h6>Imagen de Usuario</h6>
+          {userImageUrl ? (
+            <img src={userImageUrl} alt="User" className="w-full h-auto" />
+          ) : (
+            <span>Cargando imagen...</span>
+          )}
+        </div>
+      </div>
       <div className="col-12 lg:col-6 xl:col-3">
         <div className="card p-0 overflow-hidden flex flex-column">
           <div className="flex align-items-center p-3">
@@ -304,6 +350,13 @@ const DashboardEjemplo = () => {
             <span className="text-xl font-bold mt-3">Cintas de Correr</span>
             <span className="text-color-secondary">1,450 usos esta semana</span>
           </div>
+        </div>
+      </div>
+
+      <div className="col-12 ">
+        <div className="card h-full">
+          <h5>Lista de Clientes Resitrados</h5>
+          <UserInfoList />
         </div>
       </div>
     </div>
